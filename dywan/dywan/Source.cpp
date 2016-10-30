@@ -1,22 +1,18 @@
-/*************************************************************************************/
-   // Trochę bardziej skomplikowany program wykorzystujący funkcje biblioteki OpenGL
-   /*************************************************************************************/
+
 #include <windows.h>
 #include <gl/gl.h>
 #include <gl/glut.h>
-   /*************************************************************************************/
 
-   // Funkcaja określająca, co ma być rysowane 
-   // (zawsze wywoływana, gdy trzeba przerysować scenę)
 
-	GLint poziom = 3;
+
+GLint poziom = 3;
 GLfloat szerokosc = 200;
 GLfloat st_deformacji = 2;
 
 
 void rysuj_dywan(GLfloat x, GLfloat y, GLfloat szerokosc, GLint poziom)
 {
-
+	// rekurencja do dywanu 
 	if (poziom > 0)
 	{
 		szerokosc = szerokosc / 3;
@@ -52,17 +48,12 @@ void RenderScene(void)
 {
 
 	glClear(GL_COLOR_BUFFER_BIT);
-	// Czyszczenie okna aktualnym kolorem czyszcz�cym
-
-
-
-	glColor3f(0.0f, 1.0f, 0.0f);
-	// Ustawienie aktualnego koloru rysowania na zielony
+	// Czyszczenie okna aktualnym kolorem czyszczącym
 
 	rysuj_dywan(100, 100, szerokosc, poziom);
 
 	glFlush();
-	// Przekazanie polece� rysuj�cych do wykonania
+	// Przekazanie poleceń rysujących do wykonania
 
 }
 /*************************************************************************************/
@@ -70,8 +61,8 @@ void RenderScene(void)
 
 void MyInit(void)
 {
-	glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
-	// Kolor okna wnętrza okna - ustawiono na szary
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	// Kolor okna wnętrza okna - ustawiono na czarny
 }
 /*************************************************************************************/
 // Funkcja służąca do kontroli zachowania proporcji rysowanych obiektów
@@ -120,19 +111,16 @@ void main(void)
 	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);
 
 
-
-	glutCreateWindow("Drugi program w OpenGL");
+	glutCreateWindow("Zadanie domowe, Dywan");
 
 
 	glutDisplayFunc(RenderScene);
-
 
 
 	glutReshapeFunc(ChangeSize);
 
 
 	MyInit();
-
 
 
 	glutMainLoop();
